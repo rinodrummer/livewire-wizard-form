@@ -1,7 +1,7 @@
 <?php
 
-arch()->preset()->laravel();
-arch()->preset()->security();
+arch('Laravel preset')->preset()->laravel();
+arch('Security preset')->preset()->security();
 
 arch('it will not use debugging functions')
     ->expect(['dd', 'dump', 'ray'])
