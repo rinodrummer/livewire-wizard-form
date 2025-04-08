@@ -10,8 +10,6 @@ trait IsWizardException
 
     /**
      * Returns the step component's parent wizard.
-     *
-     * @return WizardComponent
      */
     public function getWizardComponent(): WizardComponent
     {

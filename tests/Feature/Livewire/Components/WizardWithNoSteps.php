@@ -2,10 +2,10 @@
 
 namespace LivewireWizardForm\Tests\Feature\Livewire\Components;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
-use LivewireWizardForm\Wizard\IsWizard;
+use Livewire\Component;
 use LivewireWizardForm\Wizard\Contracts\WizardComponent;
+use LivewireWizardForm\Wizard\IsWizard;
 
 class WizardWithNoSteps extends Component implements WizardComponent
 {

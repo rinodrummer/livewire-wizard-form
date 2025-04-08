@@ -1,13 +1,13 @@
 <?php
 
+use LivewireWizardForm\Exceptions\StepStatePropertyNotSpecifiedException;
 use LivewireWizardForm\Facades\WizardForm;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\Step;
-use LivewireWizardForm\Exceptions\StepStatePropertyNotSpecifiedException;
 
 it('binds the right step component without any parent', function () {
     WizardForm::permitOrphanedSteps();
 
-    $step = new Step();
+    $step = new Step;
 
     $exception = new StepStatePropertyNotSpecifiedException($step);
 

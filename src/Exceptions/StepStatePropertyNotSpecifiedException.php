@@ -2,9 +2,9 @@
 
 namespace LivewireWizardForm\Exceptions;
 
+use LivewireWizardForm\Exceptions\Concerns\IsStepException;
 use LivewireWizardForm\Facades\WizardForm;
 use LivewireWizardForm\Wizard\Contracts\StepComponent;
-use LivewireWizardForm\Exceptions\Concerns\IsStepException;
 
 class StepStatePropertyNotSpecifiedException extends \Exception
 {
@@ -24,7 +24,7 @@ class StepStatePropertyNotSpecifiedException extends \Exception
 
         $target = $stepClass;
 
-        if (!WizardForm::areOrphanedStepsPermitted()) {
+        if (! WizardForm::areOrphanedStepsPermitted()) {
             $wizardClass = basename(str_replace('\\', '/', $this->wizard::class));
 
             $target .= " of $wizardClass";
