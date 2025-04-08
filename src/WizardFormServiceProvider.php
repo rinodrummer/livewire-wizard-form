@@ -1,13 +1,15 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace LivewireWizardForm;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class WizardFormServiceProvider extends PackageServiceProvider
 {
+    /**
+     * Configures the package.
+     */
     public function configurePackage(Package $package): void
     {
         /*
@@ -16,10 +18,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_migration_table_name_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->name('livewire-wizard-form')
+            ->hasViews('wizard');
     }
 }
