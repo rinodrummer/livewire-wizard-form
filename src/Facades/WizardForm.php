@@ -10,7 +10,7 @@ use LivewireWizardForm\WizardForm as BaseWizardForm;
  */
 class WizardForm extends Facade
 {
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     protected static function getFacadeAccessor(): string
     {
         return BaseWizardForm::class;

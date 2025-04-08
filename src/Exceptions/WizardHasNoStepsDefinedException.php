@@ -2,8 +2,8 @@
 
 namespace LivewireWizardForm\Exceptions;
 
-use LivewireWizardForm\Wizard\Contracts\WizardComponent;
 use LivewireWizardForm\Exceptions\Concerns\IsWizardException;
+use LivewireWizardForm\Wizard\Contracts\WizardComponent;
 
 class WizardHasNoStepsDefinedException extends \Exception
 {

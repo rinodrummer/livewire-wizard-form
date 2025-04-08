@@ -3,11 +3,11 @@
 namespace LivewireWizardForm\Wizard;
 
 use BackedEnum;
-use Livewire\Component;
-use Livewire\Attributes\On;
 use Livewire\Attributes\Locked;
-use LivewireWizardForm\Wizard\Contracts\WizardComponent;
+use Livewire\Attributes\On;
+use Livewire\Component;
 use LivewireWizardForm\Exceptions\WizardHasNoStepsDefinedException;
+use LivewireWizardForm\Wizard\Contracts\WizardComponent;
 
 /**
  * Trait used to make the given Livewire component a wizard for step forms.
@@ -16,6 +16,7 @@ use LivewireWizardForm\Exceptions\WizardHasNoStepsDefinedException;
  * @template T of BackedEnum
  *
  * @phpstan-require-extends Component
+ *
  * @phpstan-require-implements WizardComponent
  */
 trait IsWizard
@@ -32,8 +33,6 @@ trait IsWizard
     /**
      * Stores the name of the current step.
      * To get a better-typed value use {@see self::currentStep()}.
-     *
-     * @var ?string
      */
     #[Locked]
     public ?string $stepName = null;
@@ -41,9 +40,7 @@ trait IsWizard
     /**
      * Performs the mount of this trait when used by a Livewire {@link Component}.
      *
-     * @param string|null $step
      *
-     * @return void
      *
      * @throws WizardHasNoStepsDefinedException
      */
@@ -58,28 +55,28 @@ trait IsWizard
 
     // - Step Management
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function currentStep(): string|BackedEnum|null
     {
         /** @var BackedEnum $enum */
         $enum = $this->useEnum();
 
-        if (!$enum) {
+        if (! $enum) {
             return $this->stepName;
         }
 
         return $enum::tryFrom($this->stepName);
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function currentStepComponent(): string
     {
-        return $this->stepName . '-step';
+        return $this->stepName.'-step';
     }
 
     // --- Step Navigation
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     #[On('previous-step')]
     public function previousStep(array $data = [], bool $quietly = false): bool
     {
@@ -94,7 +91,7 @@ trait IsWizard
         return $this->setStep($steps[$key - 1], $data, $quietly);
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     #[On('next-step')]
     public function nextStep(array $data = [], bool $quietly = false): bool
     {
@@ -109,10 +106,10 @@ trait IsWizard
         return $this->setStep($steps[$key + 1], $data, $quietly);
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function setStep(string|BackedEnum $step, array $data = [], bool $quietly = false): bool
     {
-        if (!in_array($step, $this->steps())) {
+        if (! in_array($step, $this->steps())) {
             return false;
         }
 
@@ -120,7 +117,7 @@ trait IsWizard
 
         $this->stepName = is_string($step) ? $step : $step->value;
 
-        if (!$quietly && $currentStepName) {
+        if (! $quietly && $currentStepName) {
             $this->wizardState[$currentStepName] = $data;
         }
 
@@ -129,7 +126,7 @@ trait IsWizard
 
     // --- Adjacent Steps Detection
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function hasPreviousStep(): bool
     {
         $key = $this->getPreviousStep();
@@ -141,7 +138,7 @@ trait IsWizard
         return true;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function hasNextStep(): bool
     {
         $key = $this->getNextStep();
@@ -155,7 +152,7 @@ trait IsWizard
 
     // --- Step Typing
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function useEnum(): ?string
     {
         return null;
@@ -163,15 +160,13 @@ trait IsWizard
 
     // --- Step Definition
 
-    /** @inheritDoc */
-    public abstract function steps(): array;
+    /** {@inheritDoc} */
+    abstract public function steps(): array;
 
     // --- Step Utilities
 
     /**
      * Gets the previous step's index, if possible.
-     *
-     * @return int|null
      */
     protected function getPreviousStep(): ?int
     {
@@ -188,8 +183,6 @@ trait IsWizard
 
     /**
      * Gets the next step's index, if possible.
-     *
-     * @return int|null
      */
     protected function getNextStep(): ?int
     {
@@ -197,7 +190,7 @@ trait IsWizard
 
         $key = array_search($this->currentStep(), $steps);
 
-        if ($key === false || $key == sizeof($steps) - 1) {
+        if ($key === false || $key == count($steps) - 1) {
             return null;
         }
 
@@ -207,9 +200,7 @@ trait IsWizard
     /**
      * Normalizes the step name as a string if an enum case is passed.
      *
-     * @param string|T $step
-     *
-     * @return string
+     * @param  string|T  $step
      */
     protected function getStepName(string|BackedEnum $step): string
     {
@@ -222,10 +213,10 @@ trait IsWizard
 
     // - State Management
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function getWizardState(mixed $step = null): ?array
     {
-        if (!$step) {
+        if (! $step) {
             return $this->wizardState;
         }
 
@@ -234,7 +225,7 @@ trait IsWizard
         return $this->wizardState[$stepName] ?? null;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function getCurrentStepState(): ?array
     {
         return $this->getWizardState($this->currentStep());

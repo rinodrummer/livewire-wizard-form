@@ -2,10 +2,10 @@
 
 namespace LivewireWizardForm\Tests\Feature\Livewire\Components;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
-use LivewireWizardForm\Wizard\IsStep;
+use Livewire\Component;
 use LivewireWizardForm\Wizard\Contracts\StepComponent;
+use LivewireWizardForm\Wizard\IsStep;
 
 class StepWithNoStateProperty extends Component implements StepComponent
 {

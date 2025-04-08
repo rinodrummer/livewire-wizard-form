@@ -12,7 +12,6 @@ class WizardForm
      * Determines if the package should permit to step components to not have a parent wizard
      * component.
      *
-     * @var bool
      *
      * @see StepComponent
      * @see WizardComponent
@@ -22,8 +21,6 @@ class WizardForm
     /**
      * Enables step components to not have a parent wizard component.
      * Should be used for tests.
-     *
-     * @return void
      */
     public function permitOrphanedSteps(): void
     {
@@ -33,8 +30,6 @@ class WizardForm
     /**
      * Disables step components to not have a parent wizard component.
      * Should be used for tests.
-     *
-     * @return void
      */
     public function prohibitOrphanedSteps(): void
     {
@@ -43,8 +38,6 @@ class WizardForm
 
     /**
      * Returns the actual possibility of a step components to not have a parent wizard component.
-     *
-     * @return bool
      */
     public function areOrphanedStepsPermitted(): bool
     {

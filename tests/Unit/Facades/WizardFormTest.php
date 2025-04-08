@@ -1,7 +1,7 @@
 <?php
 
-use LivewireWizardForm\WizardForm;
 use LivewireWizardForm\Facades\WizardForm as WizardFormFacade;
+use LivewireWizardForm\WizardForm;
 
 it('instantiates a the right facade', function () {
     expect(WizardFormFacade::getFacadeRoot())

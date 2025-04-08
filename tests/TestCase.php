@@ -2,19 +2,19 @@
 
 namespace LivewireWizardForm\Tests;
 
-use Livewire\Livewire;
 use Illuminate\Support\Facades\View;
+use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
-use LivewireWizardForm\WizardFormServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\Step;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\FirstStep;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\SecondStep;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithOneStep;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithNoSteps;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithManySteps;
+use LivewireWizardForm\Tests\Feature\Livewire\Components\Step;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\StepWithNoStateProperty;
+use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithManySteps;
+use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithNoSteps;
+use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithOneStep;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithStepWithoutStateProperty;
+use LivewireWizardForm\WizardFormServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -22,7 +22,7 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        View::addNamespace('test', __DIR__ . '/resources/views');
+        View::addNamespace('test', __DIR__.'/resources/views');
 
         $this->registerTestComponents();
     }

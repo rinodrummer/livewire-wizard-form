@@ -4,8 +4,8 @@ namespace LivewireWizardForm\Wizard\Contracts;
 
 use BackedEnum;
 use Livewire\Component;
-use LivewireWizardForm\Exceptions\StepStatePropertyNotSpecifiedException;
 use LivewireWizardForm\Exceptions\StepMustAlwaysBeChildOfWizardException;
+use LivewireWizardForm\Exceptions\StepStatePropertyNotSpecifiedException;
 
 /**
  * Provides a set of utility methods to make the given Livewire component step form in a wizard.
@@ -22,9 +22,7 @@ interface StepComponent
      * Navigates to the previous step, if possible.
      * Should dispatch the `previous-step` event.
      *
-     * @param bool $quietly If `true`, doesn't store the step data in the state.
-     *
-     * @return void
+     * @param  bool  $quietly  If `true`, doesn't store the step data in the state.
      *
      * @see Component::dispatch()
      */
@@ -37,9 +35,7 @@ interface StepComponent
      * If the step must be validated, it performs the validation before proceeding to the next step
      * and uses the validated data as step state.
      *
-     * @param bool $quietly If `true`, doesn't store the step data in the state.
-     *
-     * @return void
+     * @param  bool  $quietly  If `true`, doesn't store the step data in the state.
      *
      * @see Component::dispatch()
      */
@@ -52,7 +48,6 @@ interface StepComponent
      * If the step must be validated, it performs the validation before proceeding to submit the
      * wizard.
      *
-     * @return void
      *
      * @see Component::dispatch()
      */
@@ -64,10 +59,8 @@ interface StepComponent
      * Returns `true` if the wizard can proceed to next steps, or `false` if no further steps are
      * defined and the wizard is going to be submitted.
      *
-     * @param bool $quietly If `true`, doesn't store the step data in the state when going to the
-     * next step.
-     *
-     * @return bool
+     * @param  bool  $quietly  If `true`, doesn't store the step data in the state when going to the
+     *                         next step.
      *
      * @see self::hasNextStep()
      * @see Component::dispatch()
@@ -76,15 +69,11 @@ interface StepComponent
 
     /**
      * Detects if the current step has a previous one or not.
-     *
-     * @return bool
      */
     public function hasPreviousStep(): bool;
 
     /**
      * Detects if the current step has a next one or not.
-     *
-     * @return bool
      */
     public function hasNextStep(): bool;
 
@@ -92,8 +81,7 @@ interface StepComponent
      * Retrieves the state of the whole wizard component or the one of the given if a step is
      * provided.
      *
-     * @param string|BackedEnum|null $step
-     *
+     * @param  string|BackedEnum|null  $step
      * @return array<string, array>|null
      */
     public function getWizardState(mixed $step = null): ?array;
@@ -101,7 +89,6 @@ interface StepComponent
     /**
      * Retrieves the state of the current step.
      *
-     * @return array
      *
      * @throws StepStatePropertyNotSpecifiedException
      */
@@ -110,9 +97,7 @@ interface StepComponent
     /**
      * Sets the state of the current step.
      *
-     * @param array|null $data
      *
-     * @return void
      *
      * @throws StepStatePropertyNotSpecifiedException
      */
@@ -121,7 +106,6 @@ interface StepComponent
     /**
      * Searches for the parent wizard component in the component stack.
      *
-     * @return WizardComponent|null
      *
      * @throws StepMustAlwaysBeChildOfWizardException
      *

@@ -2,9 +2,8 @@
 
 namespace LivewireWizardForm\Exceptions;
 
-
-use LivewireWizardForm\Wizard\Contracts\StepComponent;
 use LivewireWizardForm\Exceptions\Concerns\IsStepException;
+use LivewireWizardForm\Wizard\Contracts\StepComponent;
 
 class StepMustAlwaysBeChildOfWizardException extends \Exception
 {

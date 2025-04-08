@@ -4,7 +4,7 @@ use LivewireWizardForm\Exceptions\WizardHasNoStepsDefinedException;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithNoSteps;
 
 it('binds the right wizard component', function () {
-    $wizard = new WizardWithNoSteps();
+    $wizard = new WizardWithNoSteps;
 
     $exception = new WizardHasNoStepsDefinedException($wizard);
 
