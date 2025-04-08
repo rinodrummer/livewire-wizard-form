@@ -22,6 +22,8 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
+        config()->set('app.key', 'Kusa060AsvbZzCcu3r6lBq5zRRVr7kcY');
+
         View::addNamespace('test', __DIR__.'/resources/views');
 
         $this->registerTestComponents();
