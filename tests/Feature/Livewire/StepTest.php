@@ -2,14 +2,14 @@
 
 use Livewire\Livewire;
 use LivewireWizardForm\Facades\WizardForm;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\Step;
+use LivewireWizardForm\Tests\Feature\Livewire\Components\StepExample;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\StepWithNoStateProperty;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithStepWithoutStateProperty;
 
 test('steps component cannot be orphan of a wizard', function () {
     WizardForm::prohibitOrphanedSteps();
 
-    Livewire::test(Step::class)
+    Livewire::test(StepExample::class)
         ->assertDontSee('This is a step');
 })->throws(
     \Illuminate\View\ViewException::class,
@@ -21,7 +21,7 @@ test('step component renders successfully', function () {
 
     expect(WizardForm::areOrphanedStepsPermitted())->toBeTrue();
 
-    Livewire::test(Step::class)
+    Livewire::test(StepExample::class)
         ->assertSee('This is a step');
 });
 

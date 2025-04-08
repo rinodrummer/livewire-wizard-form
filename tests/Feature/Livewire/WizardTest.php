@@ -1,7 +1,7 @@
 <?php
 
 use Livewire\Livewire;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithManySteps;
+use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardExample;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithNoSteps;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithOneStep;
 
@@ -17,7 +17,7 @@ test('wizard component renders successfully', function () {
         ->assertSuccessful()
         ->assertSee('This is a step');
 
-    Livewire::test(WizardWithManySteps::class)
+    Livewire::test(WizardExample::class)
         ->assertSuccessful()
         ->assertSee('First step')
         ->assertDontSee('Second step');

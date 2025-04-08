@@ -3,6 +3,7 @@
 namespace LivewireWizardForm\Tests\Feature\Livewire\Components;
 
 use Livewire\Component;
+use Illuminate\Contracts\View\View;
 use LivewireWizardForm\Wizard\Contracts\WizardComponent;
 use LivewireWizardForm\Wizard\IsWizard;
 
@@ -17,7 +18,7 @@ class WizardWithStepWithoutStateProperty extends Component implements WizardComp
         ];
     }
 
-    public function render()
+    public function render(): View
     {
         return view('test::wizard');
     }

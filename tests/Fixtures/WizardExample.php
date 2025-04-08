@@ -1,13 +1,12 @@
 <?php
 
-namespace LivewireWizardForm\Tests\Feature\Livewire\Components;
+namespace LivewireWizardForm\Tests\Fixtures;
 
 use Livewire\Component;
-use Illuminate\Contracts\View\View;
 use LivewireWizardForm\Wizard\Contracts\WizardComponent;
 use LivewireWizardForm\Wizard\IsWizard;
 
-class WizardWithManySteps extends Component implements WizardComponent
+class WizardExample extends Component implements WizardComponent
 {
     use IsWizard;
 
@@ -17,10 +16,5 @@ class WizardWithManySteps extends Component implements WizardComponent
             'first',
             'second',
         ];
-    }
-
-    public function render(): View
-    {
-        return view('test::wizard');
     }
 }

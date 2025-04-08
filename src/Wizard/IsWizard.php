@@ -17,7 +17,7 @@ use LivewireWizardForm\Wizard\Contracts\WizardComponent;
  *
  * @phpstan-require-extends Component
  *
- * @phpstan-require-implements WizardComponent
+ * @phpstan-require-implements WizardComponent<T>
  */
 trait IsWizard
 {
@@ -58,7 +58,7 @@ trait IsWizard
     /** {@inheritDoc} */
     public function currentStep(): string|BackedEnum|null
     {
-        /** @var BackedEnum $enum */
+        /** @var class-string<T>|null $enum */
         $enum = $this->useEnum();
 
         if (! $enum) {
