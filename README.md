@@ -23,7 +23,7 @@ adapted to your needs, by letting you override every bit you need.
 
 The package is compatible with:
 
-- [PHP] &ge; 8.1
+- [PHP] &ge; 8.2
 - [Laravel] &ge; 10
 - [Livewire] 3
 
