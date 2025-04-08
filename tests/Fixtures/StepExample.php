@@ -3,8 +3,8 @@
 namespace LivewireWizardForm\Tests\Fixtures;
 
 use Livewire\Component;
-use LivewireWizardForm\Wizard\Attributes\ValidatedStep;
 use LivewireWizardForm\Wizard\Attributes\StepStateProperty;
+use LivewireWizardForm\Wizard\Attributes\ValidatedStep;
 use LivewireWizardForm\Wizard\Contracts\StepComponent;
 use LivewireWizardForm\Wizard\IsStep;
 

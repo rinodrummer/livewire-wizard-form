@@ -2,8 +2,8 @@
 
 namespace LivewireWizardForm\Tests\Feature\Livewire\Components;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use Livewire\Component;
 use LivewireWizardForm\Wizard\Contracts\WizardComponent;
 use LivewireWizardForm\Wizard\IsWizard;
 
