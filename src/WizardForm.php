@@ -5,7 +5,6 @@ namespace LivewireWizardForm;
 use LivewireWizardForm\Wizard\Contracts\StepComponent;
 use LivewireWizardForm\Wizard\Contracts\WizardComponent;
 
-// @codeCoverageIgnoreStart
 class WizardForm
 {
     /**
@@ -44,4 +43,3 @@ class WizardForm
         return $this->permitsOrphanedSteps;
     }
 }
-// @codeCoverageIgnoreEnd

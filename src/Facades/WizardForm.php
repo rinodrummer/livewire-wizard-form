@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Facade;
 use LivewireWizardForm\WizardForm as BaseWizardForm;
 
 /**
+ * WizardForm Facade
+ *
  * @extends BaseWizardForm
  */
 class WizardForm extends Facade
