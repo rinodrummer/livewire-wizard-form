@@ -1,0 +1,29 @@
+<?php
+
+namespace LivewireWizardForm\Wizard\Attributes;
+
+
+use Attribute;
+use Livewire\Features\SupportSession\BaseSession;
+use Livewire\Features\SupportAttributes\AttributeLevel;
+
+#[Attribute(Attribute::TARGET_CLASS)]
+class KeepStateInSession extends BaseSession
+{
+    public function __construct(
+        protected $key = null,
+    ) {
+        parent::__construct($key);
+    }
+
+    public function __boot($component, AttributeLevel $level, $name = null, $subName = null, $subTarget = null)
+    {
+        parent::__boot(
+            $component,
+            AttributeLevel::PROPERTY,
+            'wizardState',
+            $subName,
+            $subTarget
+        );
+    }
+}
