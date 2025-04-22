@@ -181,6 +181,11 @@ trait IsWizard
 
     // --- Step Utilities
 
+    /**
+     * Gets the current step's index.
+     *
+     * @return int
+     */
     protected function getCurrentStepIndex(): int
     {
         return array_search($this->currentStep(), $this->steps());
