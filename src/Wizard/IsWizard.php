@@ -183,8 +183,6 @@ trait IsWizard
 
     /**
      * Gets the current step's index.
-     *
-     * @return int
      */
     protected function getCurrentStepIndex(): int
     {

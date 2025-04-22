@@ -24,11 +24,6 @@ class KeepStateInSession extends BaseSession
     /**
      * Boots the Livewire attribute.
      *
-     * @param $component
-     * @param AttributeLevel $level
-     * @param $name
-     * @param $subName
-     * @param $subTarget
      *
      * @return void
      */
