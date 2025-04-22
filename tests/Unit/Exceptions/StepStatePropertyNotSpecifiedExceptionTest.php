@@ -1,18 +1,18 @@
 <?php
 
+use LivewireWizardForm\Tests\Feature\Livewire\Components\Step;
 use LivewireWizardForm\Exceptions\StepStatePropertyNotSpecifiedException;
 use LivewireWizardForm\Facades\WizardForm;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\StepExample;
 
 it('binds the right step component without any parent', function () {
     WizardForm::permitOrphanedSteps();
 
-    $step = new StepExample;
+    $step = new Step();
 
     $exception = new StepStatePropertyNotSpecifiedException($step);
 
     expect($step)
-        ->toBeInstanceOf(StepExample::class)
+        ->toBeInstanceOf(Step::class)
         ->and($exception)
         ->toBeInstanceOf(StepStatePropertyNotSpecifiedException::class)
         ->and($exception->getStepComponent())
