@@ -40,8 +40,6 @@ trait IsWizard
     /**
      * Performs the mount of this trait when used by a Livewire {@link Component}.
      *
-     *
-     *
      * @throws WizardHasNoStepsDefinedException
      */
     public function mountIsWizard(?string $step = null): void
@@ -76,50 +74,87 @@ trait IsWizard
 
     // --- Step Navigation
 
+    /**
+     * Performs a navigation to a given step by its index.
+     * Stores the state before moving to the chosen step, but can be skipped.
+     *
+     * @param mixed|null $index
+     * @param array $data
+     * @param bool $quietly
+     *
+     * @return bool
+     */
+    protected function navigateToStep(mixed $index = null, array $data = [], bool $quietly = false): bool
+    {
+        $hasForwardingStep = !is_null($index);
+        $hasSetStep = false;
+
+        $this->storeStepState($data, $quietly);
+
+        if ($hasForwardingStep) {
+            $steps = $this->steps();
+
+            $hasSetStep = $this->setStep(
+                $steps[$index],
+                $data
+            );
+        }
+
+        return $hasForwardingStep && $hasSetStep;
+    }
+
     /** {@inheritDoc} */
     #[On('previous-step')]
     public function previousStep(array $data = [], bool $quietly = false): bool
     {
-        $key = $this->getPreviousStep();
-
-        if (is_null($key)) {
-            return false;
-        }
-
-        $steps = $this->steps();
-
-        return $this->setStep($steps[$key - 1], $data, $quietly);
+        return $this->navigateToStep(
+            $this->getPreviousStepIndex(),
+            $data,
+            $quietly
+        );
     }
 
     /** {@inheritDoc} */
     #[On('next-step')]
     public function nextStep(array $data = [], bool $quietly = false): bool
     {
-        $key = $this->getNextStep();
-
-        if (is_null($key)) {
-            return false;
-        }
-
-        $steps = $this->steps();
-
-        return $this->setStep($steps[$key + 1], $data, $quietly);
+        return $this->navigateToStep(
+            $this->getNextStepIndex(),
+            $data,
+            $quietly
+        );
     }
 
-    /** {@inheritDoc} */
-    public function setStep(string|BackedEnum $step, array $data = [], bool $quietly = false): bool
+    /**
+     * Stores the state of the current step in the wizard state, if possible or not explicitly
+     * skipped.
+     *
+     * @param array $data
+     * @param bool $quietly
+     *
+     * @return void
+     */
+    protected function storeStepState(array $data = [], bool $quietly = false): void
     {
-        if (! in_array($step, $this->steps())) {
-            return false;
-        }
-
-        $currentStepName = $this->stepName;
-
-        $this->stepName = is_string($step) ? $step : $step->value;
+        $currentStepName = &$this->stepName;
 
         if (! $quietly && $currentStepName) {
             $this->wizardState[$currentStepName] = $data;
         }
+    }
+
+    /** {@inheritDoc} */
+    public function setStep(string|BackedEnum $step, ?array $data = [], bool $quietly = false): bool
+    {
+        $this->storeStepState($data, $quietly);
+
+        $newStepName = is_string($step) ? $step : $step->value;
+
+        if ($newStepName === $this->stepName || ! in_array($step, $this->steps())) {
+            return false;
+        }
+
+        $this->stepName = $newStepName;
 
         return true;
     }
@@ -129,25 +164,17 @@ trait IsWizard
     /** {@inheritDoc} */
     public function hasPreviousStep(): bool
     {
-        $key = $this->getPreviousStep();
+        $key = $this->getPreviousStepIndex();
 
-        if (is_null($key)) {
-            return false;
-        }
-
-        return true;
+        return ! is_null($key);
     }
 
     /** {@inheritDoc} */
     public function hasNextStep(): bool
     {
-        $key = $this->getNextStep();
+        $key = $this->getNextStepIndex();
 
-        if (is_null($key)) {
-            return false;
-        }
-
-        return true;
+        return ! is_null($key);
     }
 
     // --- Step Typing
@@ -165,26 +192,29 @@ trait IsWizard
 
     // --- Step Utilities
 
+    protected function getCurrentStepIndex(): int
+    {
+        return array_search($this->currentStep(), $this->steps());
+    }
+
     /**
      * Gets the previous step's index, if possible.
      */
-    protected function getPreviousStep(): ?int
+    protected function getPreviousStepIndex(): ?int
     {
-        $steps = $this->steps();
-
-        $key = array_search($this->currentStep(), $steps);
+        $key = $this->getCurrentStepIndex();
 
         if ($key == 0) {
             return null;
         }
 
-        return $key;
+        return $key - 1;
     }
 
     /**
      * Gets the next step's index, if possible.
      */
-    protected function getNextStep(): ?int
+    protected function getNextStepIndex(): ?int
     {
         $steps = $this->steps();
 
@@ -194,7 +224,7 @@ trait IsWizard
             return null;
         }
 
-        return $key;
+        return $key + 1;
     }
 
     /**

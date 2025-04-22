@@ -13,7 +13,10 @@ class FirstStep extends Component implements StepComponent
     use IsStep;
 
     #[StepStateProperty]
-    public $data = [];
+    public $data = [
+        'test1_1' => null,
+        'test1_2' => null,
+    ];
 
     public function render(): View
     {

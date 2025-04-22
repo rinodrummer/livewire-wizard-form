@@ -8,7 +8,7 @@ use Livewire\LivewireServiceProvider;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\Step;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\FirstStep;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\SecondStep;
-use LivewireWizardForm\Tests\Feature\Livewire\Components\StepExample;
+use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardUsingSession;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithManySteps;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\StepWithNoStateProperty;
 use LivewireWizardForm\Tests\Feature\Livewire\Components\WizardWithNoSteps;
@@ -48,8 +48,8 @@ class TestCase extends Orchestra
         // Wizards
         Livewire::component('wizard-with-no-steps', WizardWithNoSteps::class);
         Livewire::component('wizard-with-one-step', WizardWithOneStep::class);
-        Livewire::component('wizard-with-many-steps', WizardExample::class);
         Livewire::component('wizard-with-many-steps', WizardWithManySteps::class);
+        Livewire::component('wizard-using-session', WizardUsingSession::class);
         Livewire::component(
             'wizard-with-step-without-state-property',
             WizardWithStepWithoutStateProperty::class

@@ -11,8 +11,11 @@ use Livewire\Features\SupportAttributes\AttributeLevel;
 class KeepStateInSession extends BaseSession
 {
     public function __construct(
-        protected $key = null,
+        protected $key
     ) {
+        $this->level = AttributeLevel::ROOT;
+        $this->levelName = 'wizardState';
+
         parent::__construct($key);
     }
 
