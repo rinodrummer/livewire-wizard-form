@@ -2,11 +2,11 @@
 
 namespace LivewireWizardForm\Tests\Feature\Livewire\Components;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
-use LivewireWizardForm\Wizard\IsWizard;
-use LivewireWizardForm\Wizard\Contracts\WizardComponent;
+use Livewire\Component;
 use LivewireWizardForm\Wizard\Attributes\KeepStateInSession;
+use LivewireWizardForm\Wizard\Contracts\WizardComponent;
+use LivewireWizardForm\Wizard\IsWizard;
 
 #[KeepStateInSession('state')]
 class WizardUsingSession extends Component implements WizardComponent
