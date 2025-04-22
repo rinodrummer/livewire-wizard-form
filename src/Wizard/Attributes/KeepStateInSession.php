@@ -2,10 +2,9 @@
 
 namespace LivewireWizardForm\Wizard\Attributes;
 
-
 use Attribute;
-use Livewire\Features\SupportSession\BaseSession;
 use Livewire\Features\SupportAttributes\AttributeLevel;
+use Livewire\Features\SupportSession\BaseSession;
 
 #[Attribute(Attribute::TARGET_CLASS)]
 class KeepStateInSession extends BaseSession

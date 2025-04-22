@@ -77,16 +77,10 @@ trait IsWizard
     /**
      * Performs a navigation to a given step by its index.
      * Stores the state before moving to the chosen step, but can be skipped.
-     *
-     * @param mixed|null $index
-     * @param array $data
-     * @param bool $quietly
-     *
-     * @return bool
      */
     protected function navigateToStep(mixed $index = null, array $data = [], bool $quietly = false): bool
     {
-        $hasForwardingStep = !is_null($index);
+        $hasForwardingStep = ! is_null($index);
         $hasSetStep = false;
 
         $this->storeStepState($data, $quietly);
@@ -128,11 +122,6 @@ trait IsWizard
     /**
      * Stores the state of the current step in the wizard state, if possible or not explicitly
      * skipped.
-     *
-     * @param array $data
-     * @param bool $quietly
-     *
-     * @return void
      */
     protected function storeStepState(array $data = [], bool $quietly = false): void
     {
